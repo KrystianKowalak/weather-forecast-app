@@ -88,10 +88,20 @@ main #right #info {
     font-size: 24px;
 }
 
-main #right #info h2 {
+main #right #info div {
+    display: flex;
+}
+
+main #right #info div h2 {
     margin-bottom: 30px;
     font-size: 48px; 
     font-weight: bold;
+}
+
+main #right #info div .emote-main{
+    position: relative;
+    bottom: 35px;
+    width: 128px;
 }
 
 main #right h3 {
@@ -102,13 +112,15 @@ main #right h3 {
 
 main #right #forcast {
     display: flex;
-    gap: 150px;
 }
 
 main #right #forcast figure {
+    width: 200px;
     border-style: solid;
     border-width: 3px;
-    background-color: #323d4f;
+    margin-right: 50px;
+    /*#323d4f*/
+    background-color: #6991e3;
     padding: 15px;
     color: white;
 }
@@ -119,5 +131,5 @@ main #right #forcast figure .date {
 }
 
 main #right #forcast figure .emote {
-    font-size: 24px; 
+    width: 80px;
 }
