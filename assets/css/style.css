@@ -102,7 +102,7 @@ main #right h3 {
 
 main #right #forcast {
     display: flex;
-    gap: 20px;
+    gap: 150px;
 }
 
 main #right #forcast figure {
