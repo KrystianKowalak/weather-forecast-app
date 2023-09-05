@@ -1,0 +1,123 @@
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(to left, darkblue, lightblue);
+    padding: 10px;
+    color: #ffffff;
+}
+
+header h1 {
+    font-weight: bold;
+    font-size: 64px;
+}
+
+main {
+    display: flex;
+}
+
+main #left {
+    width: 20%;
+}
+
+main #left aside {
+    margin: 10px;
+}
+
+main #left aside label {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+main #left aside input {
+    margin-bottom: 15px;
+    border-radius: 7px;
+    font-weight: bold;
+    color: gray;
+    padding: 10px;
+}
+
+main #left aside #search {
+    width: 100%;
+    border-style: none;
+    border-radius: 7px;
+    background-color: #6991e3;
+    padding: 5px;
+    font-size: 24px;
+    color: lightgray;
+}
+
+main #left aside #line {
+    width: 100%;
+    margin: 20px 0px 0px 0px;
+    border-bottom: 3px solid lightgray;
+}
+
+main #left #cities{
+    display: flex;
+    flex-direction: column;
+    margin: 25px 10px 25px 10px;
+    gap: 25px;
+    /* align-items: space-around; */
+    /* align-content: space-around; */
+    /* justify-content: space-around; */
+}
+
+main #left #cities .cities-button {
+    width: 100%;
+    border-style: none;
+    border-radius: 7px;
+    background-color: lightgray;
+    padding: 5px;
+    font-size: 24px;
+}
+
+main #right {
+    width: 80%;
+    padding: 15px;
+}
+
+main #right #info {
+    width: 100%;
+    border-style: solid;
+    border-width: 3px;
+    padding: 10px 10px 0px 10px;
+    font-size: 24px;
+}
+
+main #right #info h2 {
+    margin-bottom: 30px;
+    font-size: 48px; 
+    font-weight: bold;
+}
+
+main #right h3 {
+    margin: 15px 0px 10px 0px;
+    font-size: 32px; 
+    font-weight: bold;
+}
+
+main #right #forcast {
+    display: flex;
+    gap: 20px;
+}
+
+main #right #forcast figure {
+    border-style: solid;
+    border-width: 3px;
+    background-color: #323d4f;
+    padding: 15px;
+    color: white;
+}
+
+main #right #forcast figure .date {
+    font-weight: bold;
+    font-size: 24px; 
+}
+
+main #right #forcast figure .emote {
+    font-size: 24px; 
+}
