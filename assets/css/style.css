@@ -61,9 +61,6 @@ main #left #cities{
     flex-direction: column;
     margin: 25px 10px 25px 10px;
     gap: 25px;
-    /* align-items: space-around; */
-    /* align-content: space-around; */
-    /* justify-content: space-around; */
 }
 
 main #left #cities .cities-button {
@@ -99,6 +96,7 @@ main #right #info div h2 {
 }
 
 main #right #info div .emote-main{
+    visibility: hidden;
     position: relative;
     bottom: 35px;
     width: 128px;
@@ -116,13 +114,20 @@ main #right #forcast {
 
 main #right #forcast figure {
     width: 200px;
+    margin-right: 50px;
     border-style: solid;
     border-width: 3px;
-    margin-right: 50px;
-    /*#323d4f*/
-    background-color: #6991e3;
+    border-radius: 15px;
+    background-color: #323d4f;
     padding: 15px;
     color: white;
+}
+
+main #right #forcast figure div {
+    display: flex;
+    justify-content: center;
+    margin: 0px -15px 15px -15px;
+    background-color: #6991e3;
 }
 
 main #right #forcast figure .date {
@@ -131,5 +136,6 @@ main #right #forcast figure .date {
 }
 
 main #right #forcast figure .emote {
+    visibility: hidden;
     width: 80px;
 }
