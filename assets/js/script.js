@@ -5,34 +5,34 @@ const APIKey = "&appid=ca9d04c00cf40768a9d54466a186a42e";
 function fetchData(currentURL, forecastURL) {
     fetch(currentURL)
     .then(function (response) {
-        // if (!(response.status == 200)) {
+        if (!(response.status == 200)) {
 
-        //     throw new Error("Not 2xx response", {cause: response});
-        // }
+            throw new Error("Not 2xx response", {cause: response});
+        }
         return response.json();
     }).then(function (data) {
-        save(data.name, fetchURLCurrent, fetchURLForecast);
+        save(data.name, currentURL, forecastURL);
         setMainDisplay(data);
         displayEmotes(document.querySelector(".emote-main"), data.weather[0].icon);
+    })
+    .catch(function(err) {
+        document.getElementById("form-input").value = "Incorrect input try again!";
     });
-    //.catch(function(err) {
-    //     document.getElementById("form-input").value = "Incorrect input try again!";
-    // });
 
     fetch(forecastURL)
     .then(function (response) {
-        // if (!(response.status == 200)) {
+        if (!(response.status == 200)) {
 
-        //     throw new Error("Not 2xx response", {cause: response});
-        // }
+            throw new Error("Not 2xx response", {cause: response});
+        }
         return response.json();
     })
     .then(function (data) {
         setForecastDisplay(data);
+    })
+    .catch(function(err) {
+        document.getElementById("form-input").value = "Incorrect input try again!";
     });
-    // .catch(function(err) {
-    //     document.getElementById("form-input").value = "Incorrect input try again!";
-    // });
 }
 
 function searchFunction(event) {
