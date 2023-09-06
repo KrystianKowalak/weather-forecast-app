@@ -2,28 +2,43 @@ const queryURLCurrent = "https://api.openweathermap.org/data/2.5/weather?q=";
 const queryURLForecast = "https://api.openweathermap.org/data/2.5/forecast?q=";
 const APIKey = "&appid=ca9d04c00cf40768a9d54466a186a42e";
 
+function fetchData(currentURL, forecastURL) {
+    fetch(currentURL)
+    .then(function (response) {
+        if (!(response.status == 200)) {
+
+            throw new Error("Not 2xx response", {cause: response});
+        }
+        return response.json();
+    }).then(function (data) {
+        save(data.name, fetchURLCurrent, fetchURLForecast);
+        setMainDisplay(data);
+        displayEmotes(document.querySelector(".emote-main"), data.weather[0].icon);
+    }).catch(function(err) {
+        document.getElementById("form-input").value = "Incorrect input try again!";
+    });
+
+    fetch(forecastURL)
+    .then(function (response) {
+        if (!(response.status == 200)) {
+
+            throw new Error("Not 2xx response", {cause: response});
+        }
+        return response.json();
+    })
+    .then(function (data) {
+        setForecastDisplay(data);
+    }).catch(function(err) {
+        document.getElementById("form-input").value = "Incorrect input try again!";
+    });;
+}
+
 function searchFunction(event) {
     let city = event.srcElement.previousElementSibling.value;
     let fetchURLCurrent = queryURLCurrent + city + "&units=imperial" + APIKey;
     let fetchURLForecast = queryURLForecast + city + "&units=imperial" + APIKey;
 
-    fetch(fetchURLCurrent)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        save(data.name, fetchURLCurrent, fetchURLForecast);
-        setMainDisplay(data);
-        displayEmotes(document.querySelector(".emote-main"), data.weather[0].icon);
-    });
-
-    fetch(fetchURLForecast)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        setForecastDisplay(data);
-    });
+    fetchData(fetchURLCurrent, fetchURLForecast);
 }
 
 function setMainDisplay(info) {
@@ -54,7 +69,6 @@ function save(location, weatherURL, forecastURL) {
     let keys = Object.keys(localStorage);
     let boolean = "true";
 
-    console.log(keys);
     for (let i = 0; i < keys.length; i++) {
         if(keys[i] == location) {
             boolean = false;
@@ -68,22 +82,7 @@ function save(location, weatherURL, forecastURL) {
         button.className = 'cities-button';
 
         button.onclick = function() {
-            fetch(weatherURL)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                setMainDisplay(data);
-                displayEmotes(document.querySelector(".emote-main"), data.weather[0].icon);
-            });
-
-            fetch(forecastURL)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                setForecastDisplay(data);
-            });
+            fetchData(weatherURL, forecastURL);
         };
         document.getElementById('cities').appendChild(button);
     }
@@ -104,22 +103,7 @@ function load() {
         button.className = 'cities-button';
 
         button.onclick = function() {
-            fetch(Object.values(archive)[i].split(",")[0])
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                setMainDisplay(data);
-                displayEmotes(document.querySelector(".emote-main"), data.weather[0].icon);
-            });
-
-            fetch(Object.values(archive)[i].split(",")[1])
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                setForecastDisplay(data);
-            });
+            fetchData(Object.values(archive)[i].split(",")[0], Object.values(archive)[i].split(",")[1]);
         };
         document.getElementById('cities').appendChild(button);
     }
